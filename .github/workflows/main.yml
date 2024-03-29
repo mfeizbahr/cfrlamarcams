@@ -1,26 +1,21 @@
-name: Run Code Every Minute
+name: Run cfrcams.py Every Minute
 
 on:
   schedule:
     - cron: '*/1 * * * *' # This cron schedule triggers the workflow every minute
 
 jobs:
-  run_code:
+  run_script:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        node-version: '14'
+        python-version: '3.x' # Replace 'x' with the specific Python version you need
 
-    # Add steps to set up your environment, install dependencies, and run your code here
-    # Example:
-    # - name: Install dependencies
-    #   run: npm install
-    # 
-    # - name: Run code
-    #   run: npm start
+    - name: Run Python script
+      run: python cfrcams.py
