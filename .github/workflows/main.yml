@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v3  # Updated to use Node.js 20
       
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.10' # Choose the appropriate Python version
         
