@@ -1,25 +1,21 @@
-name: Run cfrcams every minute
+name: Python Job
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Runs every minute
+    - cron: '*/1 * * * *'
 
 jobs:
-  build:
+  run_python_script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3  # Updated to v3
+    - name: Checkout code
+      uses: actions/checkout@v3  # Updated to use Node.js 20
       
     - name: Set up Python
-      uses: actions/setup-python@v3  # Updated to v3
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.10'  # Use the Python version you need
-
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt  # If you have any dependencies, install them here
-
-    - name: Run cfrcams script
-      run: python cfrcams.py
+        python-version: '3.10' # Choose the appropriate Python version
+        
+    - name: Run Python script
+      run: python .github/workflows/cfrcams.py
