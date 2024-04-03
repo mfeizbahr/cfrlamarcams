@@ -1,21 +1,24 @@
-name: Python Job
+name: Run Python Script Every Minute
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    # Runs at every minute
+    - cron: '* * * * *'
 
 jobs:
-  run_python_script:
+  execute-python-script:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4  # Updated to use Node.js 20
-      
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.10' # Choose the appropriate Python version
-        
+        python-version: '3.10' # Adjust Python version as necessary
+    - name: Install dependencies
+      run: |
+        # Add commands to install any dependencies here
+        # For example, if your project uses a requirements.txt file, you can use:
+        # pip install -r requirements.txt
     - name: Run Python script
-      run: python .github/workflows/cfrcams.py
+      run: python .github/workflows/cfrcams.py # Adjust path to your Python script as necessary
