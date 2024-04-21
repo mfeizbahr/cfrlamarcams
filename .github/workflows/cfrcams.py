@@ -5,8 +5,9 @@ import ftplib
 
 # List of BASE_URLs
 BASE_URLS = [
- "https://flashflood.info:8282/352753090666023",
+"https://flashflood.info:8282/352753090666023",
 "https://flashflood.info:8282/352753092238656",
+"https://flashflood.info:8282/355523767528864",
 "https://flashflood.info:8282/352753090707306",
 "https://flashflood.info:8282/352753091900173",
 "https://flashflood.info:8282/352753092209608",
@@ -28,7 +29,6 @@ BASE_URLS = [
 "https://flashflood.info:8282/355523767566690",
 "https://flashflood.info:8282/356726104221007",
 "https://flashflood.info:8282/355523767560420",
-"https://flashflood.info:8282/355523767560420",
 "https://flashflood.info:8282/352596142406744",
 "https://flashflood.info:8282/355523767513213",
 "https://flashflood.info:8282/356211690491850",
@@ -37,15 +37,10 @@ BASE_URLS = [
 "https://flashflood.info:8282/355523768232656",
 "https://flashflood.info:8282/356726104297130",
 "https://flashflood.info:8282/355523767513122",
-"https://flashflood.info:8282/355523767513122",
-"https://flashflood.info:8282/355523767566690",
-"https://flashflood.info:8282/355523767566690",
-"https://flashflood.info:8282/355523767566690",
 "https://flashflood.info:8282/352753091994234",
 "https://flashflood.info:8282/352753092208477",
 "https://flashflood.info:8282/356726104568571",
 "https://flashflood.info:8282/356726104209879",
-"https://flashflood.info:8282/355523767524228",
 "https://flashflood.info:8282/355523767524228",
 "https://flashflood.info:8282/352753092238631",
 "https://flashflood.info:8282/352753090915511",
@@ -53,11 +48,15 @@ BASE_URLS = [
 "https://flashflood.info:8282/352596142409045",
 "https://flashflood.info:8282/352596145506615",
 "https://flashflood.info:8282/352596146925475",
-"https://flashflood.info:8282/352596146925475",
-"https://flashflood.info:8282/352753092228988",
 "https://flashflood.info:8282/352753092228988",
 "https://flashflood.info:8282/352753092207768",
 "https://flashflood.info:8282/352753092306842",
+"https://flashflood.info:8282/352753090665108",
+"https://flashflood.info:8282/356726109762799",
+"https://flashflood.info:8282/356726104320510",
+"https://flashflood.info:8282/352753093549937",
+"https://flashflood.info:8282/352753092283322",
+"https://flashflood.info:8282/356726104297171",
 "https://flashflood.info:8282/352596144106516"
 ]
 
@@ -73,8 +72,8 @@ output_file_name = datetime.now().strftime("%Y-%m-%d") + ".txt"
 all_outputs = []
 
 # Function to generate output text
-def generate_output_text(imei, code, date_str, circle_color):
-    return f"IMEI: {imei}, Code: {code}, Last date: {date_str}, Color: {circle_color}"
+def generate_output_text(imei, code, date_str, circle_color, last_file_name):
+    return f"IMEI: {imei}, Code: {code}, Last date: {date_str}, Color: {circle_color} , file: {last_file_name}"
 
 # Iterate over BASE_URLs
 for BASE_URL in BASE_URLS:
@@ -103,10 +102,13 @@ for BASE_URL in BASE_URLS:
             date_difference = (datetime.now().date() - image_date).days
 
             # Choose circle color based on date difference
-            circle_color = 'red' if date_difference > 1 else 'green'
+            circle_color = 'fd8282' if date_difference > 2 else '68d8a2'
+
+            last_file_name = f"{BASE_URL}/{last_file_name}"
 
             # Generate output text
-            output_text = generate_output_text(imei, code, date_str, circle_color)
+            output_text = generate_output_text(imei, code, date_str, circle_color, last_file_name)
+            print(output_text)
 
             # Append output to the list
             all_outputs.append(output_text)
