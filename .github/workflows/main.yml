@@ -3,7 +3,7 @@ name: Run Python Script Every Minute
 on:
   schedule:
     # Runs at every minute
-    - cron: '1 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   execute-python-script:
